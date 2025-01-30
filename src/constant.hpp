@@ -3,7 +3,6 @@
 #define CONSTANTS_HPP_
 #include "raylib.h"
 #include "raymath.h"
-#include <box2d/box2d.h>
 #include <cmath>
 #include <cstdlib>
 #include <math.h>
