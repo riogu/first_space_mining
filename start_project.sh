@@ -1,2 +1,3 @@
 #!/bin/bash
-cmake -B build -S . -DCMAKE_EXPORT_COMPILE_COMMANDS=On
+# this is here just for fun lol
+bash ./debug_build.sh
