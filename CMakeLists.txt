@@ -21,26 +21,6 @@ set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 option(USE_NO_ASSETS "Use no assets" OFF)
 option(USE_RAYLIB "Use raylib" ON)
 
-##########################################################################################
-# Add dependencies with FetchContent
-##########################################################################################
-# FetchContent_Declare(
-# 	raylib
-# 	GIT_REPOSITORY https://github.com/raysan5/raylib.git
-# 	GIT_TAG master
-# 	GIT_SHALLOW TRUE
-# 	GIT_PROGRESS TRUE
-# )
-# FetchContent_MakeAvailable(raylib)
-# file(GLOB fumo_collisions_SRC CONFIGURE_DEPENDS
-# 	"src/*.hpp"
-# 	"src/*.cpp"
-# )
-
-##########################################################################################
-# Add dependencies with FetchContent
-##########################################################################################
-
 # libraries array to be linked
 set(LIBRARIES ${PROJECT_NAME})
 
