@@ -105,7 +105,7 @@ add_definitions( -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE} )
 ##########################################################################################
 # Setting ASSETS_PATH
 if (CMAKE_BUILD_TYPE MATCHES "Debug")
-    SET(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} -O0 -DDEBUG -fsanitize=address -Werror")
+    SET(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} -O0 -DDEBUG -fsanitize=address -Werror -g")
     message("-- console enabled")
     if(NOT USE_NO_ASSETS AND NOT ${PLATFORM} STREQUAL "Web")
         # Set the asset path macro to the absolute path on the dev machine
@@ -128,7 +128,7 @@ endif()
 # Set common compiler flags
 # SET(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} -Wall -Wswitch")
 # Set common compiler flags
-SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wno-unused-variable -g")
+SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wno-unused-variable")
 
 if (${PLATFORM} STREQUAL "Web")
     # Tell Emscripten to build an .html file.
