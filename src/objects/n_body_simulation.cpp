@@ -1,5 +1,4 @@
 #include "n_body_simulation.hpp"
-
 void NBodySimulation::awake() {
     for (auto &body : bodies) {
         body->awake();
@@ -13,10 +12,10 @@ void NBodySimulation::update(float frametime) {
         body->update_velocity(frametime, bodies);
     }
     for (auto &body : bodies) {
-        body->update_position(frametime);
-        body->detect_screen_collision(frametime);
+        body->detect_screen_collision();
+        body->detect_collisions(bodies);
     }
-    // for (auto &body : bodies) {
-    //     body->detect_collisions(bodies);
-    // }
+    for (auto &body : bodies) {
+        body->update_position(frametime);
+    }
 }
