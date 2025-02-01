@@ -11,7 +11,7 @@ int main(void) {
     std::vector<std::shared_ptr<CelestialBody>> allBodies;
 
     // auto first_simulation = orbiting_simulation(allBodies);
-    auto first_simulation = three_body_simulation(allBodies);
+    auto first_simulation = four_body_simulation(allBodies);
     first_simulation->awake();
 
     InitWindow(screenWidth, screenHeight, "THIS... is a BUCKET.");
@@ -21,7 +21,6 @@ int main(void) {
     while (!WindowShouldClose()) {
         ClearBackground(BLACK);
         BeginDrawing();
-        int this_is_code = 3213123;
         float frametime = GetFrameTime();
 
         first_simulation->update(frametime);

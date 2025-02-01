@@ -23,9 +23,9 @@ class CelestialBody {
     void awake();
     void update_velocity(float frametime, std::vector<std::shared_ptr<CelestialBody>> &allBodies);
     void update_position(float frametime);
-    void detect_collision(std::shared_ptr<CelestialBody> &other_body);
-    void solve_collision(std::shared_ptr<CelestialBody> &other_body);
-    void detect_collisions(std::vector<std::shared_ptr<CelestialBody>> &allBodies);
+    void detect_collision(std::shared_ptr<CelestialBody> &other_body, float frametime);
+    void solve_collision(std::shared_ptr<CelestialBody> &other_body, float frametime);
+    void detect_collisions(std::vector<std::shared_ptr<CelestialBody>> &allBodies, float frametime);
     void detect_screen_collision();
     void draw();
 };

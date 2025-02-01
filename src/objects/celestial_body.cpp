@@ -50,13 +50,14 @@ void CelestialBody::update_velocity(float frametime,
 
 void CelestialBody::update_position(float frametime) { position += velocity * frametime; }
 
-void CelestialBody::detect_collisions(std::vector<std::shared_ptr<CelestialBody>> &allBodies) {
+void CelestialBody::detect_collisions(std::vector<std::shared_ptr<CelestialBody>> &allBodies,
+                                      float frametime) {
 
     for (auto &other_body : allBodies) {
         if (this == other_body.get()) {
             continue;
         }
-        detect_collision(other_body);
+        detect_collision(other_body, frametime);
     }
 }
 
@@ -79,22 +80,23 @@ void CelestialBody::detect_screen_collision() {
 
 // naive collision detection because i cant be bothered with fancy methods
 // for this project, its more focused on the gravity side of the simulation anyways
-// TODO: add spacial partitioning later maybe (not sure if i wanna do it for this project)
-// another option: use axis theorem for optimization
+// TODO:
+// option: use axis theorem so we can have squares and polygons
 // bonus option: quadtrees
+// optimization solution: use a grid structure to minize collision checks
 
-void CelestialBody::detect_collision(std::shared_ptr<CelestialBody> &other_body) {
+void CelestialBody::detect_collision(std::shared_ptr<CelestialBody> &other_body, float frametime) {
     // read this to understand how this function works
     // https://dipamsen.github.io/notebook/collisions.pdf
     float distance = Vector2Distance(other_body->position, position);
     float radius_sum = radius + other_body->radius;
 
     if (distance < radius_sum) {
-        solve_collision(other_body);
+        solve_collision(other_body, frametime);
     }
 }
 
-void CelestialBody::solve_collision(std::shared_ptr<CelestialBody> &other_body) {
+void CelestialBody::solve_collision(std::shared_ptr<CelestialBody> &other_body, float frametime) {
     // find new velocity vectors
     float distance = Vector2Distance(other_body->position, position);
 
@@ -121,10 +123,11 @@ void CelestialBody::solve_collision(std::shared_ptr<CelestialBody> &other_body) 
     // divide the overlap by 2 so each particle
     // gets pushed the same amount in opposite directions
     overlap /= 2.0f;
+    float correction = 0.5f; // NOTE: this value is here to stabilize the simulation
 
     // points towards the other body
     Vector2 push = Vector2Normalize(impact);
-    push += Vector2AddValue(push, overlap);
+    push += Vector2AddValue(push, overlap + correction);
     other_body->position += push;
     position -= push;
     // ############################################################################
