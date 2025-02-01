@@ -12,13 +12,19 @@ class CelestialBody {
     float radius;
     float mass;
     Vector2 initialVelocity;
-    Vector2 currentVelocity;
+    Vector2 velocity;
     Vector2 position;
     Color color;
-    void awake();
 
+    CelestialBody(float radius, float mass, Vector2 initialVelocity, Vector2 position, Color color)
+        : radius(radius), mass(mass), initialVelocity(initialVelocity), position(position),
+          color(color) {}
+
+    void awake();
     void update_velocity(float frametime, std::vector<std::shared_ptr<CelestialBody>> &allBodies);
     void update_position(float frametime);
+    void detect_collision(std::shared_ptr<CelestialBody> &other_body);
+    void detect_collisions(std::vector<std::shared_ptr<CelestialBody>> &allBodies);
     void draw();
 };
 #endif
