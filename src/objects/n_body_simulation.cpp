@@ -14,6 +14,7 @@ void NBodySimulation::update(float frametime) {
     }
     for (auto &body : bodies) {
         body->update_position(frametime);
+        body->detect_screen_collision(frametime);
     }
     // for (auto &body : bodies) {
     //     body->detect_collisions(bodies);

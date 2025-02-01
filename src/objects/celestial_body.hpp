@@ -25,6 +25,7 @@ class CelestialBody {
     void update_position(float frametime);
     void detect_collision(std::shared_ptr<CelestialBody> &other_body);
     void detect_collisions(std::vector<std::shared_ptr<CelestialBody>> &allBodies);
+    void detect_screen_collision(float frametime);
     void draw();
 };
 #endif
