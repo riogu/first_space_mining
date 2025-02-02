@@ -12,7 +12,7 @@ int main(void) {
 
     // auto first_simulation = orbiting_simulation(allBodies);
     auto first_simulation = four_body_simulation(allBodies);
-    first_simulation->awake();
+    // first_simulation->awake();
 
     InitWindow(screenWidth, screenHeight, "THIS... is a BUCKET.");
 
