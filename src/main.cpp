@@ -1,6 +1,8 @@
+#include "constants.hpp"
 #include "main_functions.hpp"
+#include "objects/n_body_simulation.hpp"
+#include "raylib.h"
 #include <memory>
-#include <includes_header.hpp>
 
 //------------------------------------------------------------------------------------
 // Program main entry point
@@ -10,7 +12,6 @@ int main(void) {
 
     std::vector<std::shared_ptr<CelestialBody>> allBodies;
 
-    // auto first_simulation = orbiting_simulation(allBodies);
     auto first_simulation = four_body_simulation(allBodies);
     // first_simulation->awake();
 
@@ -40,7 +41,11 @@ int main(void) {
 void update_screen(const std::unique_ptr<NBodySimulation> &simulation) {
     // remember to delcare stuff as const when you have no intention of changing it
     // (only accessing information)
-    for (const auto &body : simulation->bodies) {
-        body->draw();
-    }
+    simulation->draw_bodies();
+    // simulation->draw_orbits(60);
+    // TODO: implementing orbits
+    // simulation->bodies[0]->draw_orbit(60);
+    DrawLineBezier(simulation->bodies[1]->position, simulation->bodies[0]->position, 2.0f, PURPLE);
+    // DrawLineBezier(simulation->bodies[1]->position, simulation->bodies[2]->position, 2.0f, PURPLE);
+    DrawLineBezier(simulation->bodies[3]->position, simulation->bodies[2]->position, 2.0f, PURPLE);
 }

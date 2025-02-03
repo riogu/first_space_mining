@@ -1,12 +1,9 @@
 #ifndef MAIN_FUNCTIONS_HPP
 #define MAIN_FUNCTIONS_HPP
 
-#include "constants.hpp"
-#include "raylib.h"
+#include "objects/n_body_simulation.hpp"
 #include <memory>
 
-#include "objects/celestial_body.hpp"
-#include "objects/n_body_simulation.hpp"
-
 void update_screen(const std::unique_ptr<NBodySimulation> &simulation);
+Vector2 Vector2ScaleDivision(Vector2 v, float scale);
 #endif

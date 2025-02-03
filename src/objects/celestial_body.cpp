@@ -27,6 +27,7 @@ void CelestialBody::awake() { velocity = initialVelocity; }
 
 void CelestialBody::draw() { DrawCircleV(position, radius, color); }
 
+
 void CelestialBody::update_velocity(float frametime,
                                     std::vector<std::shared_ptr<CelestialBody>> &allBodies) {
     for (auto &other_body : allBodies) {
@@ -40,11 +41,10 @@ void CelestialBody::update_velocity(float frametime,
         // rewritten as:
         //       a = (G x m2) / r²
         float sqr_distance = Vector2DistanceSqr(other_body->position, position);
-        // NOTE: removed GRAV_CONSTANT because values were too small
         Vector2 acceleration =
             force_direction * GRAVITATIONAL_CONSTANT * other_body->mass / sqr_distance;
         // multiplied by direction to turn magnitude into vectorial change
-        velocity += acceleration * frametime * SCALING_FACTOR;
+        velocity += acceleration * frametime ;
     }
 }
 

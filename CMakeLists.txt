@@ -124,11 +124,11 @@ else()
       add_compile_definitions(NDEBUG)
     endif()
 endif()
+# SET(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} -Wall -Wswitch")
 
 # Set common compiler flags
-# SET(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} -Wall -Wswitch")
-# Set common compiler flags
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wno-unused-variable")
+set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 20)
 
 if (${PLATFORM} STREQUAL "Web")
     # Tell Emscripten to build an .html file.

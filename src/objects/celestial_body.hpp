@@ -3,6 +3,7 @@
 
 #include "raylib.h"
 #include "raymath.h"
+#include "spline.hpp"
 #include <memory>
 #include <vector>
 
@@ -29,4 +30,27 @@ class CelestialBody {
     void detect_screen_collision();
     void draw();
 };
+
+class Orbit {
+  public:
+    Spline spline;
+    /* -> timeleap is in seconds */
+    int timeleap;
+
+    Orbit(std::shared_ptr<CelestialBody> body, int timeleap, Color color)
+        : spline(color), timeleap(timeleap) {}
+  // want to also build orbits from simple celestial body copies so i add 2 constructors
+    Orbit(CelestialBody body, int timeleap, Color color)
+        : spline(color), timeleap(timeleap) {}
+    void draw();
+};
+
+class BodyWithOrbit {
+    std::shared_ptr<CelestialBody> body;
+    std::shared_ptr<Orbit> orbit;
+
+    BodyWithOrbit(std::shared_ptr<CelestialBody> body, std::shared_ptr<Orbit> orbit)
+        : body(body), orbit(orbit) {}
+};
+
 #endif
